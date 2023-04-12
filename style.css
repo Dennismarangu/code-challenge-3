@@ -1,0 +1,62 @@
+.film.item:hover {
+    border: 1px solid black;
+    padding: 10px;
+    border: 10px solid #007bff;
+    background-color: grey;
+    /* max-width: 100px;
+    max-height: 50px; */
+  }
+
+  .film-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .film.item:hover {
+    border: 10px solid #007bff;
+    background-color: grey;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .film.item img {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+    /* filter: grayscale(10%); */
+  }
+
+  .film.item h2:hover {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  .film.item p {
+    font-size: 16px;
+    color: black;
+  }
+  
+  .film.item p:first-of-type {
+    margin-top: 0;
+  }
+  
+  .film.item p:last-of-type {
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  .film.item button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .film.item button:hover {
+    background-color: #0062cc;
+    color: #fff;
+  }
