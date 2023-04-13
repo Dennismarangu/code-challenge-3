@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
           filmListItem.appendChild(filmShowtime);
   
           // Create a new p element to display the number of available tickets
-          const ticketsAvailable = film.capacity - film.tickets_sold;
+          let ticketsAvailable = film.capacity - film.tickets_sold;
           const filmTickets = document.createElement("p");
           filmTickets.textContent = `${ticketsAvailable} tickets available`;
           filmListItem.appendChild(filmTickets);
@@ -55,14 +55,33 @@ document.addEventListener("DOMContentLoaded", function() {
               alert("Sorry, this showing is sold out!");
               return;
             }
-  
+          
             // Decrease the number of tickets available and update the display
             ticketsAvailable--;
             filmTickets.textContent = `${ticketsAvailable} tickets available`;
-            });
+          
+            // Make a PUT request to update the tickets_sold property of the film
+            fetch(`${filmsUrl}/${film.id}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                tickets_sold: film.tickets_sold + 1
+              })
+            })
+            .then(res => res.json())
+            .then(updatedFilm => {
+              // Update the film object with the updated tickets_sold value
+              film.tickets_sold = updatedFilm.tickets_sold;
+            })
+            .catch(err => console.log(err));
+          });
+          
           
           // Add the film li element to the films ul element
           filmsList.appendChild(filmListItem);
         });
       });
   });
+  
